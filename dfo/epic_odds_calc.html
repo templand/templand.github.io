@@ -1,0 +1,787 @@
+<html>
+<head>
+<title>DFO Epic Odds Calculator</title>
+<style type="text/css"><!--
+
+a.link_class
+{
+	color: #16387c;
+	text-decoration: none;
+}
+a.link_class:hover
+{
+	color: #008efb;
+}
+
+a.mouseover_class
+{
+	color: #16387c;
+	text-decoration: none;
+	cursor: default;
+}
+a.mouseover_class:hover
+{
+	color: #008efb;
+}
+
+a.anton_mouseover_class
+{
+	color: #000000;
+	text-decoration: none;
+	cursor: default;
+}
+a.anton_mouseover_class:hover
+{
+	color: #008efb;
+}
+
+--></style>
+<script type="text/javascript"><!--
+
+function calculate_odds()
+{
+	var temp_anton=0;
+
+	if (document.getElementById('stage_select_id'))
+	{
+		stage_selected=num_parse_temp(document.getElementById('stage_select_id').options[document.getElementById('stage_select_id').selectedIndex].value);
+	}
+	else
+	{
+		return;
+	}
+
+	var temp_weapon_odds=0.45;
+	var temp_armor_odds=0.36;
+	var temp_accessory_odds=0.06;
+	var temp_other_odds=0.13;
+
+	var temp_weapon_lv60_items=35; // 2 aren't listed as rewards for anton in dfopedia? minus it?
+	var temp_weapon_lv70_items=25;
+	var temp_weapon_lv75_items=36;
+	var temp_weapon_lv80_items=32;
+	var temp_weapon_lv85_items=68;
+	var temp_weapon_lv90_items=31;
+	var temp_armor_lv60_items=15;
+	var temp_armor_lv70_items=25;
+	var temp_armor_lv75_items=25;
+	var temp_armor_lv80_items=25;
+	var temp_armor_lv85_items=50;
+	var temp_armor_lv90_items=75-25; // 25 not released yet
+	var temp_accessory_lv60_items=3;
+	var temp_accessory_lv70_items=3;
+	var temp_accessory_lv75_items=7;
+	var temp_accessory_lv80_items=3;
+	var temp_accessory_lv85_items=11;
+	var temp_accessory_lv90_items=9;
+	var temp_other_lv60_items=107;
+	var temp_other_lv65_items=52;
+	var temp_other_lv70_items=106;
+	var temp_other_lv75_items=94;
+	var temp_other_lv80_items=145;
+	var temp_other_lv85_items=3;
+	var temp_other_lv90_items=14;
+
+	//var temp_sub_lv60_items=107;
+	//var temp_sub_lv70_items=106;
+	//var temp_sub_lv80_items=145;
+	//var temp_sub_lv85_items=2;
+	//var temp_sub_lv90_items=3;
+	//var temp_mstone_lv65_items=52;
+	//var temp_mstone_lv75_items=94;
+	//var temp_mstone_lv85_items=1;
+	//var temp_mstone_lv90_items=8;
+	//var temp_earring_lv90_items=3;
+
+	if (stage_selected=='41' || stage_selected=='42')
+	{
+		temp_anton=1;
+
+		var temp_ar_normal_odds=86;
+		var temp_ar_anton_odds=14;
+
+		var temp_weapon_ar85_items=31;
+		var temp_accessory_ar85_items=5;
+		//var temp_other_ar85_items=5;
+		var temp_sub_ar85_items=3;
+		var temp_mstone_ar85_items=2;
+
+		var temp_ar_weapon_odds=4;
+		var temp_ar_accessory_odds=1.3;
+		//var temp_ar_other_odds=2.50;
+		var temp_ar_sub_odds=1.25;
+		var temp_ar_mstone_odds=1.25;
+
+		var temp_divide=temp_ar_weapon_odds+temp_ar_accessory_odds/*+temp_ar_other_odds*/+temp_ar_sub_odds+temp_ar_mstone_odds;
+		temp_ar_weapon_odds=(temp_ar_weapon_odds/temp_divide)*temp_ar_normal_odds;
+		temp_ar_accessory_odds=(temp_ar_accessory_odds/temp_divide)*temp_ar_normal_odds;
+		//temp_ar_other_odds=(temp_ar_other_odds/temp_divide)*temp_ar_normal_odds;
+		temp_ar_sub_odds=(temp_ar_sub_odds/temp_divide)*temp_ar_normal_odds;
+		temp_ar_mstone_odds=(temp_ar_mstone_odds/temp_divide)*temp_ar_normal_odds;
+
+		var temp_ar_anton_weapon_odds=0.00143;
+		var temp_ar_anton_accessory_odds=0.00276;
+		//var temp_ar_anton_other_odds=0.00162;
+		var temp_ar_anton_sub_odds=0.00162;
+		var temp_ar_anton_mstone_odds=0.00162;
+		var temp_ar_anton_soul_odds=0.06;
+		var temp_ar_anton_card_odds=0.02;
+
+		var temp_multiply=temp_ar_anton_odds*(1/((temp_ar_anton_weapon_odds*temp_weapon_ar85_items)+(temp_ar_anton_accessory_odds*temp_accessory_ar85_items)/*+(temp_ar_anton_other_odds*temp_other_ar85_items)*/+(temp_ar_anton_sub_odds*temp_sub_ar85_items)+(temp_ar_anton_mstone_odds*temp_mstone_ar85_items)+temp_ar_anton_soul_odds+temp_ar_anton_card_odds));
+		temp_ar_anton_weapon_odds*=temp_multiply;
+		temp_ar_anton_accessory_odds*=temp_multiply;
+		//temp_ar_anton_other_odds*=temp_multiply;
+		temp_ar_anton_sub_odds*=temp_multiply;
+		temp_ar_anton_mstone_odds*=temp_multiply;
+		temp_ar_anton_soul_odds*=temp_multiply;
+		temp_ar_anton_card_odds*=temp_multiply;
+
+		var temp_ar_weapon_lv60_odds=0.33;
+		var temp_ar_weapon_lv70_odds=0.33;
+		var temp_ar_weapon_lv75_odds=0.12;
+		var temp_ar_weapon_lv80_odds=0.15;
+		var temp_ar_accessory_lv60_odds=0.33;
+		var temp_ar_accessory_lv70_odds=0.33;
+		var temp_ar_accessory_lv75_odds=0.12;
+		var temp_ar_accessory_lv80_odds=0.15;
+		var temp_ar_other_lv60_odds=0.33; // sub
+		var temp_ar_other_lv70_odds=0.45; // sub
+		var temp_ar_other_lv80_odds=0.22; // sub
+		var temp_ar_other_lv65_odds=0.50; // mstone
+		var temp_ar_other_lv75_odds=0.50; // mstone
+
+		var temp_multiply=1/(temp_ar_weapon_lv60_odds+temp_ar_weapon_lv70_odds+temp_ar_weapon_lv75_odds+temp_ar_weapon_lv80_odds);
+		temp_ar_weapon_lv60_odds*=temp_multiply;
+		temp_ar_weapon_lv70_odds*=temp_multiply;
+		temp_ar_weapon_lv75_odds*=temp_multiply;
+		temp_ar_weapon_lv80_odds*=temp_multiply;
+		var temp_multiply=1/(temp_ar_accessory_lv60_odds+temp_ar_accessory_lv70_odds+temp_ar_accessory_lv75_odds+temp_ar_accessory_lv80_odds);
+		temp_ar_accessory_lv60_odds*=temp_multiply;
+		temp_ar_accessory_lv70_odds*=temp_multiply;
+		temp_ar_accessory_lv75_odds*=temp_multiply;
+		temp_ar_accessory_lv80_odds*=temp_multiply;
+
+		temp_ar_weapon_lv60_odds*=temp_ar_weapon_odds*(1/temp_weapon_lv60_items);
+		temp_ar_weapon_lv70_odds*=temp_ar_weapon_odds*(1/temp_weapon_lv70_items);
+		temp_ar_weapon_lv75_odds*=temp_ar_weapon_odds*(1/temp_weapon_lv75_items);
+		temp_ar_weapon_lv80_odds*=temp_ar_weapon_odds*(1/temp_weapon_lv80_items);
+		temp_ar_accessory_lv60_odds*=temp_ar_accessory_odds*(1/temp_accessory_lv60_items);
+		temp_ar_accessory_lv70_odds*=temp_ar_accessory_odds*(1/temp_accessory_lv70_items);
+		temp_ar_accessory_lv75_odds*=temp_ar_accessory_odds*(1/temp_accessory_lv75_items);
+		temp_ar_accessory_lv80_odds*=temp_ar_accessory_odds*(1/temp_accessory_lv80_items);
+		temp_ar_other_lv60_odds*=temp_ar_sub_odds*(1/(temp_other_lv60_items));
+		temp_ar_other_lv70_odds*=temp_ar_sub_odds*(1/(temp_other_lv70_items));
+		temp_ar_other_lv80_odds*=temp_ar_sub_odds*(1/temp_other_lv80_items);
+		temp_ar_other_lv65_odds*=temp_ar_mstone_odds*(1/(temp_other_lv65_items));
+		temp_ar_other_lv75_odds*=temp_ar_mstone_odds*(1/(temp_other_lv75_items));
+	}
+
+	var temp_lv60=0;
+	var temp_lv65=0;
+	var temp_lv70=0;
+	var temp_lv75=0;
+	var temp_lv80=0;
+	var temp_lv85=0;
+	var temp_lv90=0;
+	var temp_lv60_odds=0;
+	var temp_lv65_odds=0;
+	var temp_lv70_odds=0;
+	var temp_lv75_odds=0;
+	var temp_lv80_odds=0;
+	var temp_lv85_odds=0;
+	var temp_lv90_odds=0;
+	var temp_lv60_odds_diff=0;
+	var temp_lv65_odds_diff=0;
+	var temp_lv70_odds_diff=0;
+	var temp_lv75_odds_diff=0;
+	var temp_lv80_odds_diff=0;
+	var temp_lv85_odds_diff=0;
+	var temp_lv90_odds_diff=0;
+
+	var temp_ar85=0;
+
+	var temp_weapon_lv60_items_diff=temp_weapon_lv60_items;
+	var temp_weapon_lv70_items_diff=temp_weapon_lv70_items;
+	var temp_weapon_lv75_items_diff=temp_weapon_lv75_items;
+	var temp_weapon_lv80_items_diff=temp_weapon_lv80_items;
+	var temp_weapon_lv85_items_diff=temp_weapon_lv85_items;
+	var temp_weapon_lv90_items_diff=temp_weapon_lv90_items;
+	var temp_armor_lv60_items_diff=temp_armor_lv60_items;
+	var temp_armor_lv70_items_diff=temp_armor_lv70_items;
+	var temp_armor_lv75_items_diff=temp_armor_lv75_items;
+	var temp_armor_lv80_items_diff=temp_armor_lv80_items;
+	var temp_armor_lv85_items_diff=temp_armor_lv85_items;
+	var temp_armor_lv90_items_diff=temp_armor_lv90_items;
+	var temp_accessory_lv60_items_diff=temp_accessory_lv60_items;
+	var temp_accessory_lv70_items_diff=temp_accessory_lv70_items;
+	var temp_accessory_lv75_items_diff=temp_accessory_lv75_items;
+	var temp_accessory_lv80_items_diff=temp_accessory_lv80_items;
+	var temp_accessory_lv85_items_diff=temp_accessory_lv85_items;
+	var temp_accessory_lv90_items_diff=temp_accessory_lv90_items;
+	var temp_other_lv60_items_diff=temp_other_lv60_items;
+	var temp_other_lv65_items_diff=temp_other_lv65_items;
+	var temp_other_lv70_items_diff=temp_other_lv70_items;
+	var temp_other_lv75_items_diff=temp_other_lv75_items;
+	var temp_other_lv80_items_diff=temp_other_lv80_items;
+	var temp_other_lv85_items_diff=temp_other_lv85_items;
+	var temp_other_lv90_items_diff=temp_other_lv90_items;
+
+	var temp_weapon_total_items=0;
+	var temp_armor_total_items=0;
+	var temp_accessory_total_items=0;
+	var temp_other_total_items=0;
+
+	var temp_weapon_lv70_unique_odds=0;
+	var temp_weapon_lv75_unique_odds=0;
+	var temp_weapon_lv80_unique_odds=0;
+	var temp_weapon_unique_total_items=0;
+
+	switch(stage_selected)
+	{
+		// Time Gate (Lv70-75) (1-3)
+		case 11:
+		{
+			temp_lv70=1;
+			temp_lv75=1;
+			temp_lv70_odds_diff=0.10;
+			temp_lv75_odds_diff=-0.10;
+
+			temp_weapon_lv70_items_diff=temp_weapon_lv75_items;
+			temp_weapon_lv75_items_diff=temp_weapon_lv70_items;
+			temp_armor_lv70_items_diff=temp_armor_lv75_items;
+			temp_armor_lv75_items_diff=temp_armor_lv70_items;
+			temp_accessory_lv70_items_diff=temp_accessory_lv75_items;
+			temp_accessory_lv75_items_diff=temp_accessory_lv70_items;
+			temp_other_lv70_items_diff=temp_other_lv75_items;
+			temp_other_lv75_items_diff=temp_other_lv70_items;
+
+			temp_weapon_total_items=temp_weapon_lv70_items+temp_weapon_lv75_items;
+			temp_armor_total_items=temp_armor_lv70_items+temp_armor_lv75_items;
+			temp_accessory_total_items=temp_accessory_lv70_items+temp_accessory_lv75_items;
+			temp_other_total_items=temp_other_lv70_items+temp_other_lv75_items;
+
+			temp_weapon_lv70_unique_odds=0; // 1 unique  (+1 unobtainable?)
+			temp_weapon_lv75_unique_odds=0; // 3 uniques
+			temp_weapon_unique_total_items=4;
+
+			show_level_inputs('70,75');
+			break;
+		}
+
+		// Time Gate (Lv70-75) (4-5)
+		case 12:
+		{
+			temp_lv70=1;
+			temp_lv75=1;
+			temp_lv70_odds_diff=0.05;
+			temp_lv75_odds_diff=-0.05;
+
+			temp_weapon_lv70_items_diff=temp_weapon_lv75_items;
+			temp_weapon_lv75_items_diff=temp_weapon_lv70_items;
+			temp_armor_lv70_items_diff=temp_armor_lv75_items;
+			temp_armor_lv75_items_diff=temp_armor_lv70_items;
+			temp_accessory_lv70_items_diff=temp_accessory_lv75_items;
+			temp_accessory_lv75_items_diff=temp_accessory_lv70_items;
+			temp_other_lv70_items_diff=temp_other_lv75_items;
+			temp_other_lv75_items_diff=temp_other_lv70_items;
+
+			temp_weapon_total_items=temp_weapon_lv70_items+temp_weapon_lv75_items;
+			temp_armor_total_items=temp_armor_lv70_items+temp_armor_lv75_items;
+			temp_accessory_total_items=temp_accessory_lv70_items+temp_accessory_lv75_items;
+			temp_other_total_items=temp_other_lv70_items+temp_other_lv75_items;
+
+			temp_weapon_lv70_unique_odds=0; // 1 unique  (+1 unobtainable?)
+			temp_weapon_lv75_unique_odds=0; // 3 uniques
+			temp_weapon_unique_total_items=4;
+
+			show_level_inputs('70,75');
+			break;
+		}
+
+		// Time Gate (Lv75-80) (6-8)
+		case 13:
+		{
+			temp_lv75=1;
+			temp_lv80=1;
+			temp_lv75_odds_diff=0.10;
+			temp_lv80_odds_diff=-0.10;
+
+			temp_weapon_lv75_items_diff=temp_weapon_lv80_items;
+			temp_weapon_lv80_items_diff=temp_weapon_lv75_items;
+			temp_armor_lv75_items_diff=temp_armor_lv80_items;
+			temp_armor_lv80_items_diff=temp_armor_lv75_items;
+			temp_accessory_lv75_items_diff=temp_accessory_lv80_items;
+			temp_accessory_lv80_items_diff=temp_accessory_lv75_items;
+			temp_other_lv75_items_diff=temp_other_lv80_items;
+			temp_other_lv80_items_diff=temp_other_lv75_items;
+
+			temp_weapon_total_items=temp_weapon_lv75_items+temp_weapon_lv80_items;
+			temp_armor_total_items=temp_armor_lv75_items+temp_armor_lv80_items;
+			temp_accessory_total_items=temp_accessory_lv75_items+temp_accessory_lv80_items;
+			temp_other_total_items=temp_other_lv75_items+temp_other_lv80_items;
+
+			temp_weapon_lv75_unique_odds=0; // 3 uniques
+			temp_weapon_lv80_unique_odds=0; // 0 uniques
+			temp_weapon_unique_total_items=7;
+
+			show_level_inputs('75,80');
+			break;
+		}
+
+		// Power Station (Lv75-85) (1) (Kore Power Plant)
+		case 21:
+		{
+			temp_lv75=1;
+			temp_lv80=1;
+			temp_lv85=1;
+
+			// no item weight difference
+
+			temp_weapon_total_items=temp_weapon_lv75_items+temp_weapon_lv80_items+temp_weapon_lv85_items;
+			temp_armor_total_items=temp_armor_lv75_items+temp_armor_lv80_items+temp_armor_lv85_items;
+			temp_accessory_total_items=temp_accessory_lv75_items+temp_accessory_lv80_items+temp_accessory_lv85_items;
+			temp_other_total_items=temp_other_lv75_items+temp_other_lv80_items+temp_other_lv85_items;
+
+			temp_weapon_lv75_unique_odds=0; // 3 uniques
+			temp_weapon_lv80_unique_odds=0; // 6 uniques
+			temp_weapon_unique_total_items=7;
+
+			show_level_inputs('75,80,85');
+			break;
+		}
+
+		// Power Station (Lv80-85) (2-3)
+		case 22:
+		{
+			temp_lv80=1;
+			temp_lv85=1;
+			temp_lv80_odds_diff=0.10;
+			temp_lv85_odds_diff=-0.10;
+
+			temp_weapon_lv80_items_diff=temp_weapon_lv85_items;
+			temp_weapon_lv85_items_diff=temp_weapon_lv80_items;
+			temp_armor_lv80_items_diff=temp_armor_lv85_items;
+			temp_armor_lv85_items_diff=temp_armor_lv80_items;
+			temp_accessory_lv80_items_diff=temp_accessory_lv85_items;
+			temp_accessory_lv85_items_diff=temp_accessory_lv80_items;
+			temp_other_lv80_items_diff=temp_other_lv85_items;
+			temp_other_lv85_items_diff=temp_other_lv80_items;
+
+			temp_weapon_total_items=temp_weapon_lv80_items+temp_weapon_lv85_items;
+			temp_armor_total_items=temp_armor_lv80_items+temp_armor_lv85_items;
+			temp_accessory_total_items=temp_accessory_lv80_items+temp_accessory_lv85_items;
+			temp_other_total_items=temp_other_lv80_items+temp_other_lv85_items;
+
+			temp_weapon_lv80_unique_odds=0; // 6 uniques (not started)
+			temp_weapon_unique_total_items=4;
+
+			show_level_inputs('80,85');
+			break;
+		}
+
+		// Castle of the Dead (Lv80-85) (1-5) (All)
+		case 31:
+		{
+			temp_lv80=1;
+			temp_lv85=1;
+			temp_lv80_odds_diff=0.05;
+			temp_lv85_odds_diff=-0.05;
+
+			temp_weapon_lv80_items_diff=temp_weapon_lv85_items;
+			temp_weapon_lv85_items_diff=temp_weapon_lv80_items;
+			temp_armor_lv80_items_diff=temp_armor_lv85_items;
+			temp_armor_lv85_items_diff=temp_armor_lv80_items;
+			temp_accessory_lv80_items_diff=temp_accessory_lv85_items;
+			temp_accessory_lv85_items_diff=temp_accessory_lv80_items;
+			temp_other_lv80_items_diff=temp_other_lv85_items;
+			temp_other_lv85_items_diff=temp_other_lv80_items;
+
+			temp_weapon_total_items=temp_weapon_lv80_items+temp_weapon_lv85_items;
+			temp_armor_total_items=temp_armor_lv80_items+temp_armor_lv85_items;
+			temp_accessory_total_items=temp_accessory_lv80_items+temp_accessory_lv85_items;
+			temp_other_total_items=temp_other_lv80_items+temp_other_lv85_items;
+
+			show_level_inputs('80,85');
+			break;
+		}
+
+		// Metro Center (Lv80-85) (1-5) (All)
+		case 51:
+		{
+			temp_lv85=1;
+			temp_lv90=1;
+			temp_lv85_odds_diff=0.10;
+			temp_lv90_odds_diff=-0.10;
+
+			temp_weapon_lv85_items_diff=temp_weapon_lv90_items;
+			temp_weapon_lv90_items_diff=temp_weapon_lv85_items;
+			temp_armor_lv85_items_diff=temp_armor_lv90_items;
+			temp_armor_lv90_items_diff=temp_armor_lv85_items;
+			temp_accessory_lv85_items_diff=temp_accessory_lv90_items;
+			temp_accessory_lv90_items_diff=temp_accessory_lv85_items;
+			temp_other_lv85_items_diff=temp_other_lv90_items;
+			temp_other_lv90_items_diff=temp_other_lv85_items;
+
+			temp_weapon_total_items=temp_weapon_lv85_items+temp_weapon_lv90_items;
+			temp_armor_total_items=temp_armor_lv85_items+temp_armor_lv90_items;
+			temp_accessory_total_items=temp_accessory_lv85_items+temp_accessory_lv90_items;
+			temp_other_total_items=temp_other_lv85_items+temp_other_lv90_items;
+
+			show_level_inputs('85,90');
+			break;
+		}
+
+		// Anton Raid (Lv60-80) (Phase 1 Card)
+		//case 41:
+		//{
+		//	temp_lv60=1;
+		//	temp_lv65=1;
+		//	temp_lv70=1;
+		//	temp_lv75=1;
+		//	temp_lv80=1;
+		//
+		//	show_level_inputs('60,65,70,75,80,85','all_armor',1);
+		//	break;
+		//}
+
+		// Anton Raid (Lv60-85) (Phase 2 Card)
+		case 42:
+		{
+			temp_lv60=1;
+			temp_lv65=1;
+			temp_lv70=1;
+			temp_lv75=1;
+			temp_lv80=1;
+			temp_ar85=1;
+
+			show_level_inputs('60,65,70,75,80,anton','all_armor',1);
+			break;
+		}
+	}
+
+	document.getElementById('weapon_lv60_id').value=(num_parse_temp(document.getElementById('weapon_lv60_id').value)>temp_weapon_lv60_items) ? temp_weapon_lv60_items : num_parse_temp(document.getElementById('weapon_lv60_id').value, 1);
+	document.getElementById('weapon_lv70_id').value=(num_parse_temp(document.getElementById('weapon_lv70_id').value)>temp_weapon_lv70_items) ? temp_weapon_lv70_items : num_parse_temp(document.getElementById('weapon_lv70_id').value, 1);
+	document.getElementById('weapon_lv75_id').value=(num_parse_temp(document.getElementById('weapon_lv75_id').value)>temp_weapon_lv75_items) ? temp_weapon_lv75_items : num_parse_temp(document.getElementById('weapon_lv75_id').value, 1);
+	document.getElementById('weapon_lv80_id').value=(num_parse_temp(document.getElementById('weapon_lv80_id').value)>temp_weapon_lv80_items) ? temp_weapon_lv80_items : num_parse_temp(document.getElementById('weapon_lv80_id').value, 1);
+	document.getElementById('weapon_lv85_id').value=(num_parse_temp(document.getElementById('weapon_lv85_id').value)>temp_weapon_lv85_items) ? temp_weapon_lv85_items : num_parse_temp(document.getElementById('weapon_lv85_id').value, 1);
+	document.getElementById('weapon_lv90_id').value=(num_parse_temp(document.getElementById('weapon_lv90_id').value)>temp_weapon_lv90_items) ? temp_weapon_lv90_items : num_parse_temp(document.getElementById('weapon_lv90_id').value, 1);
+	document.getElementById('armor_lv60_id').value=(num_parse_temp(document.getElementById('armor_lv60_id').value)>temp_armor_lv60_items) ? temp_armor_lv60_items : num_parse_temp(document.getElementById('armor_lv60_id').value, 1);
+	document.getElementById('armor_lv70_id').value=(num_parse_temp(document.getElementById('armor_lv70_id').value)>temp_armor_lv70_items) ? temp_armor_lv70_items : num_parse_temp(document.getElementById('armor_lv70_id').value, 1);
+	document.getElementById('armor_lv75_id').value=(num_parse_temp(document.getElementById('armor_lv75_id').value)>temp_armor_lv75_items) ? temp_armor_lv75_items : num_parse_temp(document.getElementById('armor_lv75_id').value, 1);
+	document.getElementById('armor_lv80_id').value=(num_parse_temp(document.getElementById('armor_lv80_id').value)>temp_armor_lv80_items) ? temp_armor_lv80_items : num_parse_temp(document.getElementById('armor_lv80_id').value, 1);
+	document.getElementById('armor_lv85_id').value=(num_parse_temp(document.getElementById('armor_lv85_id').value)>temp_armor_lv85_items) ? temp_armor_lv85_items : num_parse_temp(document.getElementById('armor_lv85_id').value, 1);
+	document.getElementById('armor_lv90_id').value=(num_parse_temp(document.getElementById('armor_lv90_id').value)>temp_armor_lv90_items) ? temp_armor_lv90_items : num_parse_temp(document.getElementById('armor_lv90_id').value, 1);
+	document.getElementById('accessory_lv60_id').value=(num_parse_temp(document.getElementById('accessory_lv60_id').value)>temp_accessory_lv60_items) ? temp_accessory_lv60_items : num_parse_temp(document.getElementById('accessory_lv60_id').value, 1);
+	document.getElementById('accessory_lv70_id').value=(num_parse_temp(document.getElementById('accessory_lv70_id').value)>temp_accessory_lv70_items) ? temp_accessory_lv70_items : num_parse_temp(document.getElementById('accessory_lv70_id').value, 1);
+	document.getElementById('accessory_lv75_id').value=(num_parse_temp(document.getElementById('accessory_lv75_id').value)>temp_accessory_lv75_items) ? temp_accessory_lv75_items : num_parse_temp(document.getElementById('accessory_lv75_id').value, 1);
+	document.getElementById('accessory_lv80_id').value=(num_parse_temp(document.getElementById('accessory_lv80_id').value)>temp_accessory_lv80_items) ? temp_accessory_lv80_items : num_parse_temp(document.getElementById('accessory_lv80_id').value, 1);
+	document.getElementById('accessory_lv85_id').value=(num_parse_temp(document.getElementById('accessory_lv85_id').value)>temp_accessory_lv85_items) ? temp_accessory_lv85_items : num_parse_temp(document.getElementById('accessory_lv85_id').value, 1);
+	document.getElementById('accessory_lv90_id').value=(num_parse_temp(document.getElementById('accessory_lv90_id').value)>temp_accessory_lv90_items) ? temp_accessory_lv90_items : num_parse_temp(document.getElementById('accessory_lv90_id').value, 1);
+	document.getElementById('other_lv60_id').value=(num_parse_temp(document.getElementById('other_lv60_id').value)>temp_other_lv60_items) ? temp_other_lv60_items : num_parse_temp(document.getElementById('other_lv60_id').value, 1);
+	document.getElementById('other_lv65_id').value=(num_parse_temp(document.getElementById('other_lv65_id').value)>temp_other_lv65_items) ? temp_other_lv65_items : num_parse_temp(document.getElementById('other_lv65_id').value, 1);
+	document.getElementById('other_lv70_id').value=(num_parse_temp(document.getElementById('other_lv70_id').value)>temp_other_lv70_items) ? temp_other_lv70_items : num_parse_temp(document.getElementById('other_lv70_id').value, 1);
+	document.getElementById('other_lv75_id').value=(num_parse_temp(document.getElementById('other_lv75_id').value)>temp_other_lv75_items) ? temp_other_lv75_items : num_parse_temp(document.getElementById('other_lv75_id').value, 1);
+	document.getElementById('other_lv80_id').value=(num_parse_temp(document.getElementById('other_lv80_id').value)>temp_other_lv80_items) ? temp_other_lv80_items : num_parse_temp(document.getElementById('other_lv80_id').value, 1);
+	document.getElementById('other_lv85_id').value=(num_parse_temp(document.getElementById('other_lv85_id').value)>temp_other_lv85_items) ? temp_other_lv85_items : num_parse_temp(document.getElementById('other_lv85_id').value, 1);
+	document.getElementById('other_lv90_id').value=(num_parse_temp(document.getElementById('other_lv90_id').value)>temp_other_lv90_items) ? temp_other_lv90_items : num_parse_temp(document.getElementById('other_lv90_id').value, 1);
+
+	document.getElementById('weapon_ar85_id').value=(num_parse_temp(document.getElementById('weapon_ar85_id').value)>temp_weapon_ar85_items) ? temp_weapon_ar85_items : num_parse_temp(document.getElementById('weapon_ar85_id').value, 1);
+	document.getElementById('accessory_ar85_id').value=(num_parse_temp(document.getElementById('accessory_ar85_id').value)>temp_accessory_ar85_items) ? temp_accessory_ar85_items : num_parse_temp(document.getElementById('accessory_ar85_id').value, 1);
+	//document.getElementById('other_ar85_id').value=(num_parse_temp(document.getElementById('other_ar85_id').value)>temp_other_ar85_items) ? temp_other_ar85_items : num_parse_temp(document.getElementById('other_ar85_id').value, 1);
+	document.getElementById('sub_ar85_id').value=(num_parse_temp(document.getElementById('sub_ar85_id').value)>temp_sub_ar85_items) ? temp_sub_ar85_items : num_parse_temp(document.getElementById('sub_ar85_id').value, 1);
+	document.getElementById('mstone_ar85_id').value=(num_parse_temp(document.getElementById('mstone_ar85_id').value)>temp_mstone_ar85_items) ? temp_mstone_ar85_items : num_parse_temp(document.getElementById('mstone_ar85_id').value, 1);
+
+	if (temp_anton)
+	{
+		var temp_weapon_lv60_odds_result=num_parse_temp(document.getElementById('weapon_lv60_id').value)*temp_ar_weapon_lv60_odds;
+		var temp_weapon_lv70_odds_result=num_parse_temp(document.getElementById('weapon_lv70_id').value)*temp_ar_weapon_lv70_odds;
+		var temp_weapon_lv75_odds_result=num_parse_temp(document.getElementById('weapon_lv75_id').value)*temp_ar_weapon_lv75_odds;
+		var temp_weapon_lv80_odds_result=num_parse_temp(document.getElementById('weapon_lv80_id').value)*temp_ar_weapon_lv80_odds;
+		var temp_weapon_lv85_odds_result=0;
+		var temp_weapon_lv90_odds_result=0;
+		var temp_armor_lv60_odds_result=0;
+		var temp_armor_lv70_odds_result=0;
+		var temp_armor_lv75_odds_result=0;
+		var temp_armor_lv80_odds_result=0;
+		var temp_armor_lv85_odds_result=0;
+		var temp_armor_lv90_odds_result=0;
+		var temp_accessory_lv60_odds_result=num_parse_temp(document.getElementById('accessory_lv60_id').value)*temp_ar_accessory_lv60_odds;
+		var temp_accessory_lv70_odds_result=num_parse_temp(document.getElementById('accessory_lv70_id').value)*temp_ar_accessory_lv70_odds;
+		var temp_accessory_lv75_odds_result=num_parse_temp(document.getElementById('accessory_lv75_id').value)*temp_ar_accessory_lv75_odds;
+		var temp_accessory_lv80_odds_result=num_parse_temp(document.getElementById('accessory_lv80_id').value)*temp_ar_accessory_lv80_odds;
+		var temp_accessory_lv85_odds_result=0;
+		var temp_accessory_lv90_odds_result=0;
+		var temp_other_lv60_odds_result=num_parse_temp(document.getElementById('other_lv60_id').value)*temp_ar_other_lv60_odds;
+		var temp_other_lv65_odds_result=num_parse_temp(document.getElementById('other_lv65_id').value)*temp_ar_other_lv65_odds;
+		var temp_other_lv70_odds_result=num_parse_temp(document.getElementById('other_lv70_id').value)*temp_ar_other_lv70_odds;
+		var temp_other_lv75_odds_result=num_parse_temp(document.getElementById('other_lv75_id').value)*temp_ar_other_lv75_odds;
+		var temp_other_lv80_odds_result=num_parse_temp(document.getElementById('other_lv80_id').value)*temp_ar_other_lv80_odds;
+		var temp_other_lv85_odds_result=0;
+		var temp_other_lv90_odds_result=0;
+
+		var temp_weapon_ar85_odds_result=num_parse_temp(document.getElementById('weapon_ar85_id').value)*temp_ar_anton_weapon_odds;
+		var temp_accessory_ar85_odds_result=num_parse_temp(document.getElementById('accessory_ar85_id').value)*temp_ar_anton_accessory_odds;
+		//var temp_other_ar85_odds_result=num_parse_temp(document.getElementById('other_ar85_id').value)*temp_ar_anton_other_odds; 
+		var temp_sub_ar85_odds_result=num_parse_temp(document.getElementById('sub_ar85_id').value)*temp_ar_anton_sub_odds;
+		var temp_mstone_ar85_odds_result=num_parse_temp(document.getElementById('mstone_ar85_id').value)*temp_ar_anton_mstone_odds;
+	}
+	else
+	{
+		var temp_weapon_lv60_odds_result=((num_parse_temp(document.getElementById('weapon_lv60_id').value)*(100/temp_weapon_total_items))*temp_weapon_odds)*(1+(temp_lv60_odds_diff*(temp_weapon_lv60_items_diff/temp_weapon_total_items)));
+		var temp_weapon_lv70_odds_result=((num_parse_temp(document.getElementById('weapon_lv70_id').value)*(100/temp_weapon_total_items))*temp_weapon_odds)*(1+(temp_lv70_odds_diff*(temp_weapon_lv70_items_diff/temp_weapon_total_items)));
+		var temp_weapon_lv75_odds_result=((num_parse_temp(document.getElementById('weapon_lv75_id').value)*(100/temp_weapon_total_items))*temp_weapon_odds)*(1+(temp_lv75_odds_diff*(temp_weapon_lv75_items_diff/temp_weapon_total_items)));
+		var temp_weapon_lv80_odds_result=((num_parse_temp(document.getElementById('weapon_lv80_id').value)*(100/temp_weapon_total_items))*temp_weapon_odds)*(1+(temp_lv80_odds_diff*(temp_weapon_lv80_items_diff/temp_weapon_total_items)));
+		var temp_weapon_lv85_odds_result=((num_parse_temp(document.getElementById('weapon_lv85_id').value)*(100/temp_weapon_total_items))*temp_weapon_odds)*(1+(temp_lv85_odds_diff*(temp_weapon_lv85_items_diff/temp_weapon_total_items)));
+		var temp_weapon_lv90_odds_result=((num_parse_temp(document.getElementById('weapon_lv90_id').value)*(100/temp_weapon_total_items))*temp_weapon_odds)*(1+(temp_lv90_odds_diff*(temp_weapon_lv90_items_diff/temp_weapon_total_items)));
+		var temp_armor_lv60_odds_result=((num_parse_temp(document.getElementById('armor_lv60_id').value)*(100/temp_armor_total_items))*temp_armor_odds)*(1+(temp_lv60_odds_diff*(temp_armor_lv60_items_diff/temp_armor_total_items)));
+		var temp_armor_lv70_odds_result=((num_parse_temp(document.getElementById('armor_lv70_id').value)*(100/temp_armor_total_items))*temp_armor_odds)*(1+(temp_lv70_odds_diff*(temp_armor_lv70_items_diff/temp_armor_total_items)));
+		var temp_armor_lv75_odds_result=((num_parse_temp(document.getElementById('armor_lv75_id').value)*(100/temp_armor_total_items))*temp_armor_odds)*(1+(temp_lv75_odds_diff*(temp_armor_lv75_items_diff/temp_armor_total_items)));
+		var temp_armor_lv80_odds_result=((num_parse_temp(document.getElementById('armor_lv80_id').value)*(100/temp_armor_total_items))*temp_armor_odds)*(1+(temp_lv80_odds_diff*(temp_armor_lv80_items_diff/temp_armor_total_items)));
+		var temp_armor_lv85_odds_result=((num_parse_temp(document.getElementById('armor_lv85_id').value)*(100/temp_armor_total_items))*temp_armor_odds)*(1+(temp_lv85_odds_diff*(temp_armor_lv85_items_diff/temp_armor_total_items)));
+		var temp_armor_lv90_odds_result=((num_parse_temp(document.getElementById('armor_lv90_id').value)*(100/temp_armor_total_items))*temp_armor_odds)*(1+(temp_lv90_odds_diff*(temp_armor_lv90_items_diff/temp_armor_total_items)));
+		var temp_accessory_lv60_odds_result=((num_parse_temp(document.getElementById('accessory_lv60_id').value)*(100/temp_accessory_total_items))*temp_accessory_odds)*(1+(temp_lv60_odds_diff*(temp_accessory_lv60_items_diff/temp_accessory_total_items)));
+		var temp_accessory_lv70_odds_result=((num_parse_temp(document.getElementById('accessory_lv70_id').value)*(100/temp_accessory_total_items))*temp_accessory_odds)*(1+(temp_lv70_odds_diff*(temp_accessory_lv70_items_diff/temp_accessory_total_items)));
+		var temp_accessory_lv75_odds_result=((num_parse_temp(document.getElementById('accessory_lv75_id').value)*(100/temp_accessory_total_items))*temp_accessory_odds)*(1+(temp_lv75_odds_diff*(temp_accessory_lv75_items_diff/temp_accessory_total_items)));
+		var temp_accessory_lv80_odds_result=((num_parse_temp(document.getElementById('accessory_lv80_id').value)*(100/temp_accessory_total_items))*temp_accessory_odds)*(1+(temp_lv80_odds_diff*(temp_accessory_lv80_items_diff/temp_accessory_total_items)));
+		var temp_accessory_lv85_odds_result=((num_parse_temp(document.getElementById('accessory_lv85_id').value)*(100/temp_accessory_total_items))*temp_accessory_odds)*(1+(temp_lv85_odds_diff*(temp_accessory_lv85_items_diff/temp_accessory_total_items)));
+		var temp_accessory_lv90_odds_result=((num_parse_temp(document.getElementById('accessory_lv90_id').value)*(100/temp_accessory_total_items))*temp_accessory_odds)*(1+(temp_lv90_odds_diff*(temp_accessory_lv90_items_diff/temp_accessory_total_items)));
+		var temp_other_lv60_odds_result=((num_parse_temp(document.getElementById('other_lv60_id').value)*(100/temp_other_total_items))*temp_other_odds)*(1+(temp_lv60_odds_diff*(temp_other_lv60_items_diff/temp_other_total_items)));
+		var temp_other_lv65_odds_result=((num_parse_temp(document.getElementById('other_lv65_id').value)*(100/temp_other_total_items))*temp_other_odds)*(1+(temp_lv65_odds_diff*(temp_other_lv65_items_diff/temp_other_total_items)));
+		var temp_other_lv70_odds_result=((num_parse_temp(document.getElementById('other_lv70_id').value)*(100/temp_other_total_items))*temp_other_odds)*(1+(temp_lv70_odds_diff*(temp_other_lv70_items_diff/temp_other_total_items)));
+		var temp_other_lv75_odds_result=((num_parse_temp(document.getElementById('other_lv75_id').value)*(100/temp_other_total_items))*temp_other_odds)*(1+(temp_lv75_odds_diff*(temp_other_lv75_items_diff/temp_other_total_items)));
+		var temp_other_lv80_odds_result=((num_parse_temp(document.getElementById('other_lv80_id').value)*(100/temp_other_total_items))*temp_other_odds)*(1+(temp_lv80_odds_diff*(temp_other_lv80_items_diff/temp_other_total_items)));
+		var temp_other_lv85_odds_result=((num_parse_temp(document.getElementById('other_lv85_id').value)*(100/temp_other_total_items))*temp_other_odds)*(1+(temp_lv85_odds_diff*(temp_other_lv85_items_diff/temp_other_total_items)));
+		var temp_other_lv90_odds_result=((num_parse_temp(document.getElementById('other_lv90_id').value)*(100/temp_other_total_items))*temp_other_odds)*(1+(temp_lv90_odds_diff*(temp_other_lv90_items_diff/temp_other_total_items)));
+
+		var temp_weapon_ar85_odds_result=0;
+		var temp_accessory_ar85_odds_result=0;
+		//var temp_other_ar85_odds_result=0;
+		var temp_sub_ar85_odds_result=0;
+		var temp_mstone_ar85_odds_result=0;
+	}
+
+	document.getElementById('weapon_lv60_result_id').innerHTML=''+temp_weapon_lv60_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('weapon_lv60_id').value)!='0') ? '1/'+(100/temp_weapon_lv60_odds_result).toFixed(2) : '0/0');
+	document.getElementById('weapon_lv70_result_id').innerHTML=''+temp_weapon_lv70_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('weapon_lv70_id').value)!='0') ? '1/'+(100/temp_weapon_lv70_odds_result).toFixed(2) : '0/0');
+	document.getElementById('weapon_lv75_result_id').innerHTML=''+temp_weapon_lv75_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('weapon_lv75_id').value)!='0') ? '1/'+(100/temp_weapon_lv75_odds_result).toFixed(2) : '0/0');
+	document.getElementById('weapon_lv80_result_id').innerHTML=''+temp_weapon_lv80_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('weapon_lv80_id').value)!='0') ? '1/'+(100/temp_weapon_lv80_odds_result).toFixed(2) : '0/0');
+	document.getElementById('weapon_lv85_result_id').innerHTML=''+temp_weapon_lv85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('weapon_lv85_id').value)!='0') ? '1/'+(100/temp_weapon_lv85_odds_result).toFixed(2) : '0/0');
+	document.getElementById('weapon_lv90_result_id').innerHTML=''+temp_weapon_lv90_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('weapon_lv90_id').value)!='0') ? '1/'+(100/temp_weapon_lv90_odds_result).toFixed(2) : '0/0');
+	document.getElementById('weapon_ar85_result_id').innerHTML=''+temp_weapon_ar85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('weapon_ar85_id').value)!='0') ? '1/'+(100/temp_weapon_ar85_odds_result).toFixed(2) : '0/0');
+	document.getElementById('armor_lv60_result_id').innerHTML=''+temp_armor_lv60_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('armor_lv60_id').value)!='0') ? '1/'+(100/temp_armor_lv60_odds_result).toFixed(2) : '0/0');
+	document.getElementById('armor_lv70_result_id').innerHTML=''+temp_armor_lv70_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('armor_lv70_id').value)!='0') ? '1/'+(100/temp_armor_lv70_odds_result).toFixed(2) : '0/0');
+	document.getElementById('armor_lv75_result_id').innerHTML=''+temp_armor_lv75_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('armor_lv75_id').value)!='0') ? '1/'+(100/temp_armor_lv75_odds_result).toFixed(2) : '0/0');
+	document.getElementById('armor_lv80_result_id').innerHTML=''+temp_armor_lv80_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('armor_lv80_id').value)!='0') ? '1/'+(100/temp_armor_lv80_odds_result).toFixed(2) : '0/0');
+	document.getElementById('armor_lv85_result_id').innerHTML=''+temp_armor_lv85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('armor_lv85_id').value)!='0') ? '1/'+(100/temp_armor_lv85_odds_result).toFixed(2) : '0/0');
+	document.getElementById('armor_lv90_result_id').innerHTML=''+temp_armor_lv90_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('armor_lv90_id').value)!='0') ? '1/'+(100/temp_armor_lv90_odds_result).toFixed(2) : '0/0');
+	document.getElementById('accessory_lv60_result_id').innerHTML=''+temp_accessory_lv60_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('accessory_lv60_id').value)!='0') ? '1/'+(100/temp_accessory_lv60_odds_result).toFixed(2) : '0/0');
+	document.getElementById('accessory_lv70_result_id').innerHTML=''+temp_accessory_lv70_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('accessory_lv70_id').value)!='0') ? '1/'+(100/temp_accessory_lv70_odds_result).toFixed(2) : '0/0');
+	document.getElementById('accessory_lv75_result_id').innerHTML=''+temp_accessory_lv75_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('accessory_lv75_id').value)!='0') ? '1/'+(100/temp_accessory_lv75_odds_result).toFixed(2) : '0/0');
+	document.getElementById('accessory_lv80_result_id').innerHTML=''+temp_accessory_lv80_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('accessory_lv80_id').value)!='0') ? '1/'+(100/temp_accessory_lv80_odds_result).toFixed(2) : '0/0');
+	document.getElementById('accessory_lv85_result_id').innerHTML=''+temp_accessory_lv85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('accessory_lv85_id').value)!='0') ? '1/'+(100/temp_accessory_lv85_odds_result).toFixed(2) : '0/0');
+	document.getElementById('accessory_lv90_result_id').innerHTML=''+temp_accessory_lv90_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('accessory_lv90_id').value)!='0') ? '1/'+(100/temp_accessory_lv90_odds_result).toFixed(2) : '0/0');
+	document.getElementById('accessory_ar85_result_id').innerHTML=''+temp_accessory_ar85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('accessory_ar85_id').value)!='0') ? '1/'+(100/temp_accessory_ar85_odds_result).toFixed(2) : '0/0');
+	document.getElementById('other_lv60_result_id').innerHTML=''+temp_other_lv60_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('other_lv60_id').value)!='0') ? '1/'+(100/temp_other_lv60_odds_result).toFixed(2) : '0/0');
+	document.getElementById('other_lv65_result_id').innerHTML=''+temp_other_lv65_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('other_lv65_id').value)!='0') ? '1/'+(100/temp_other_lv65_odds_result).toFixed(2) : '0/0');
+	document.getElementById('other_lv70_result_id').innerHTML=''+temp_other_lv70_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('other_lv70_id').value)!='0') ? '1/'+(100/temp_other_lv70_odds_result).toFixed(2) : '0/0');
+	document.getElementById('other_lv75_result_id').innerHTML=''+temp_other_lv75_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('other_lv75_id').value)!='0') ? '1/'+(100/temp_other_lv75_odds_result).toFixed(2) : '0/0');
+	document.getElementById('other_lv80_result_id').innerHTML=''+temp_other_lv80_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('other_lv80_id').value)!='0') ? '1/'+(100/temp_other_lv80_odds_result).toFixed(2) : '0/0');
+	document.getElementById('other_lv85_result_id').innerHTML=''+temp_other_lv85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('other_lv85_id').value)!='0') ? '1/'+(100/temp_other_lv85_odds_result).toFixed(2) : '0/0');
+	document.getElementById('other_lv90_result_id').innerHTML=''+temp_other_lv90_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('other_lv90_id').value)!='0') ? '1/'+(100/temp_other_lv90_odds_result).toFixed(2) : '0/0');
+	//document.getElementById('other_ar85_result_id').innerHTML=''+temp_other_ar85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('other_ar85_id').value)!='0') ? '1/'+(100/temp_other_ar85_odds_result).toFixed(2) : '0/0');
+	document.getElementById('sub_ar85_result_id').innerHTML=''+temp_sub_ar85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('sub_ar85_id').value)!='0') ? '1/'+(100/temp_sub_ar85_odds_result).toFixed(2) : '0/0');
+	document.getElementById('mstone_ar85_result_id').innerHTML=''+temp_mstone_ar85_odds_result.toFixed(2)+'% - '+((Number(document.getElementById('mstone_ar85_id').value)!='0') ? '1/'+(100/temp_mstone_ar85_odds_result).toFixed(2) : '0/0');
+
+	var temp_all_odds_result=
+		(temp_weapon_lv60_odds_result*temp_lv60)
+		+(temp_weapon_lv70_odds_result*temp_lv70)
+		+(temp_weapon_lv75_odds_result*temp_lv75)
+		+(temp_weapon_lv80_odds_result*temp_lv80)
+		+(temp_weapon_lv85_odds_result*temp_lv85)
+		+(temp_weapon_lv90_odds_result*temp_lv90)
+		//+(temp_armor_lv60_odds_result*(temp_lv60 && !temp_anton))
+		+(temp_armor_lv70_odds_result*(temp_lv70 && !temp_anton))
+		+(temp_armor_lv75_odds_result*(temp_lv75 && !temp_anton))
+		+(temp_armor_lv80_odds_result*(temp_lv80 && !temp_anton))
+		+(temp_armor_lv85_odds_result*(temp_lv85 && !temp_anton))
+		+(temp_armor_lv90_odds_result*(temp_lv90 && !temp_anton))
+		+(temp_accessory_lv60_odds_result*temp_lv60)
+		+(temp_accessory_lv70_odds_result*temp_lv70)
+		+(temp_accessory_lv75_odds_result*temp_lv75)
+		+(temp_accessory_lv80_odds_result*temp_lv80)
+		+(temp_accessory_lv85_odds_result*temp_lv85)
+		+(temp_accessory_lv90_odds_result*temp_lv90)
+		+(temp_other_lv60_odds_result*temp_lv60)
+		+(temp_other_lv65_odds_result*temp_lv65)
+		+(temp_other_lv70_odds_result*temp_lv70)
+		+(temp_other_lv75_odds_result*temp_lv75)
+		+(temp_other_lv80_odds_result*temp_lv80)
+		+(temp_other_lv85_odds_result*temp_lv85)
+		+(temp_other_lv90_odds_result*temp_lv90)
+		+(temp_weapon_ar85_odds_result*temp_ar85)
+		+(temp_accessory_ar85_odds_result*temp_ar85)
+		//+(temp_other_ar85_odds_result*temp_ar85)
+		+(temp_sub_ar85_odds_result*temp_ar85)
+		+(temp_mstone_ar85_odds_result*temp_ar85)
+	;
+
+	document.getElementById('odds_total_id').innerHTML=(temp_all_odds_result).toFixed(2)
+		+'% - '+((temp_all_odds_result!=0) ? '1/'+(100/(temp_all_odds_result)).toFixed(2) : '0/0');
+}
+
+function show_level_inputs(text,text2,anton)
+{
+	text2=(text2!=undefined) ? text2 : '';
+
+	document.getElementById('weapon_lv60_input_span_id').style.display=(text.indexOf('60')!=-1) ? '' : 'none';
+	document.getElementById('armor_lv60_input_span_id').style.display=(text.indexOf('60')!=-1 && text2.indexOf('all_armor')==-1 && text2.indexOf('60_armor')==-1) ? '' : 'none';
+	document.getElementById('accessory_lv60_input_span_id').style.display=(text.indexOf('60')!=-1) ? '' : 'none';
+	document.getElementById('other_lv60_input_span_id').style.display=(text.indexOf('60')!=-1) ? '' : 'none';
+	document.getElementById('other_lv65_input_span_id').style.display=(text.indexOf('65')!=-1) ? '' : 'none';
+	document.getElementById('weapon_lv70_input_span_id').style.display=(text.indexOf('70')!=-1) ? '' : 'none';
+	document.getElementById('armor_lv70_input_span_id').style.display=(text.indexOf('70')!=-1 && text2.indexOf('all_armor')==-1) ? '' : 'none';
+	document.getElementById('accessory_lv70_input_span_id').style.display=(text.indexOf('70')!=-1) ? '' : 'none';
+	document.getElementById('other_lv70_input_span_id').style.display=(text.indexOf('70')!=-1) ? '' : 'none';
+	document.getElementById('weapon_lv75_input_span_id').style.display=(text.indexOf('75')!=-1) ? '' : 'none';
+	document.getElementById('armor_lv75_input_span_id').style.display=(text.indexOf('75')!=-1 && text2.indexOf('all_armor')==-1) ? '' : 'none';
+	document.getElementById('accessory_lv75_input_span_id').style.display=(text.indexOf('75')!=-1) ? '' : 'none';
+	document.getElementById('other_lv75_input_span_id').style.display=(text.indexOf('75')!=-1) ? '' : 'none';
+	document.getElementById('weapon_lv80_input_span_id').style.display=(text.indexOf('80')!=-1) ? '' : 'none';
+	document.getElementById('armor_lv80_input_span_id').style.display=(text.indexOf('80')!=-1 && text2.indexOf('all_armor')==-1) ? '' : 'none';
+	document.getElementById('accessory_lv80_input_span_id').style.display=(text.indexOf('80')!=-1) ? '' : 'none';
+	document.getElementById('other_lv80_input_span_id').style.display=(text.indexOf('80')!=-1) ? '' : 'none';
+	document.getElementById('weapon_lv85_input_span_id').style.display=(text.indexOf('85')!=-1) ? '' : 'none';
+	document.getElementById('armor_lv85_input_span_id').style.display=(text.indexOf('85')!=-1 && text2.indexOf('all_armor')==-1) ? '' : 'none';
+	document.getElementById('accessory_lv85_input_span_id').style.display=(text.indexOf('85')!=-1) ? '' : 'none';
+	document.getElementById('other_lv85_input_span_id').style.display=(text.indexOf('85')!=-1) ? '' : 'none';
+	document.getElementById('weapon_lv90_input_span_id').style.display=(text.indexOf('90')!=-1) ? '' : 'none';
+	document.getElementById('armor_lv90_input_span_id').style.display=(text.indexOf('90')!=-1) ? '' : 'none';
+	document.getElementById('accessory_lv90_input_span_id').style.display=(text.indexOf('90')!=-1) ? '' : 'none';
+	document.getElementById('other_lv90_input_span_id').style.display=(text.indexOf('90')!=-1) ? '' : 'none';
+
+	document.getElementById('weapon_ar85_input_span_id').style.display=(text.indexOf('anton')!=-1) ? '' : 'none';
+	document.getElementById('accessory_ar85_input_span_id').style.display=(text.indexOf('anton')!=-1) ? '' : 'none';
+	document.getElementById('sub_ar85_input_span_id').style.display=(text.indexOf('anton')!=-1) ? '' : 'none';
+	document.getElementById('mstone_ar85_input_span_id').style.display=(text.indexOf('anton')!=-1) ? '' : 'none';
+
+	document.getElementById('armor_section_id').style.display=(text2.indexOf('all_armor')==-1) ? '' : 'none';
+	document.getElementById('anton_section_id').style.display=(anton) ? '' : 'none';
+
+	document.getElementById('weapon_lv70-80_note_id').style.display=(!anton && (text.indexOf('70')!=-1 || text.indexOf('75')!=-1 || (text.indexOf('80')!=-1 && parseInt(stage_selected)<30))) ? '' : 'none';
+	//document.getElementById('armor_lv90_note_id').style.display=(text.indexOf('90')!=-1 && text2.indexOf('all_armor')==-1) ? '' : 'none';
+	//document.getElementById('other_lv85-90_note_id').style.display=(text.indexOf('90')!=-1) ? '' : 'none';
+}
+
+function num_parse_temp(tint,field)
+{
+	while(tint.length>1 && tint.substr(0,1)=='0')
+	{
+		tint=tint.substr(1);
+	}
+
+	if (field)
+	{
+		return tint;
+	}
+	else
+	{
+		return Number(tint.replace(/[^0-9]/g,''));
+	}
+}
+
+--></script>
+</head>
+<body style="font-family: Tahoma; font-size: 15px;">
+
+<div align="center">
+	<br />
+	<b>DFO Epic Odds Calculator</b><br /><font size="-1">Last Updated: January 28th, 2017</font>
+	<br /><br />
+
+	<div align="left" style="width: 655px;">
+		<table cellpadding="0" cellspacing="0" border="0" width="520" align="center" style="padding-left: 9px; padding-top: 10px;">
+			<tr>
+				<td align="left" valign="top" width="260" nowrap="nowrap" style="padding-right: 91px; padding-bottom: 25px;">
+					<div style="width: 260px; margin-bottom: 10px;"><b>Weapons</b> <span id="weapon_lv70-80_note_id">(<a href="#" class="mouseover_class" title="Does not currently include Unique Epics." onclick="alert('Does not currently include Unique Epics.'); return false;">?</a>)</span></div>
+					<span id="weapon_lv60_input_span_id" style="display: none;">Lv60: <input type="text" id="weapon_lv60_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="weapon_lv60_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="weapon_lv70_input_span_id" style="display: none;">Lv70: <input type="text" id="weapon_lv70_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="weapon_lv70_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="weapon_lv75_input_span_id" style="display: none;">Lv75: <input type="text" id="weapon_lv75_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="weapon_lv75_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="weapon_lv80_input_span_id">Lv80: <input type="text" id="weapon_lv80_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="weapon_lv80_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="weapon_lv85_input_span_id">Lv85: <input type="text" id="weapon_lv85_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="weapon_lv85_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="weapon_lv90_input_span_id" style="display: none;">Lv90: <input type="text" id="weapon_lv90_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="weapon_lv90_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+				</td>
+				<td align="left" valign="top" width="260" nowrap="nowrap">
+					<div id="armor_section_id" style="width: 260px; margin-bottom: 10px;"><b>Armor</b><!-- <span id="armor_lv90_note_id"> (<a href="#" class="mouseover_class" title="Does not currently include unreleased Lv90 Epics." onclick="alert('Does not currently include unreleased Lv90 Epics.'); return false;">?</a>)</span> --></div>
+					<span id="armor_lv60_input_span_id" style="display: none;">Lv60: <input type="text" id="armor_lv60_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="armor_lv60_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="armor_lv70_input_span_id" style="display: none;">Lv70: <input type="text" id="armor_lv70_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="armor_lv70_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="armor_lv75_input_span_id" style="display: none;">Lv75: <input type="text" id="armor_lv75_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="armor_lv75_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="armor_lv80_input_span_id">Lv80: <input type="text" id="armor_lv80_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="armor_lv80_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="armor_lv85_input_span_id">Lv85: <input type="text" id="armor_lv85_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="armor_lv85_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="armor_lv90_input_span_id" style="display: none;">Lv90: <input type="text" id="armor_lv90_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="armor_lv90_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<div id="anton_section_id" style="display: none; width: 260px; margin-bottom: 10px;"><b>Anton Epics</b><!-- <span id="anton_lv85_note_id"> (<a href="#" class="mouseover_class" title="" onclick="alert(''); return false;">?</a>)</span> --></div>
+					<span id="weapon_ar85_input_span_id" style="display: none;"><a class="anton_mouseover_class" title="Weapons" onclick="alert('Weapons'); return false;">Weap</a>: <input type="text" id="weapon_ar85_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="weapon_ar85_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="accessory_ar85_input_span_id" style="display: none;"><a class="anton_mouseover_class" title="Accessories" onclick="alert('Accessories'); return false;">Acces</a>: <input type="text" id="accessory_ar85_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="accessory_ar85_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="sub_ar85_input_span_id" style="display: none;"><a class="anton_mouseover_class" title="Sub Equips" onclick="alert('Sub Equips'); return false;">Sub E</a>: <input type="text" id="sub_ar85_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="sub_ar85_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="mstone_ar85_input_span_id" style="display: none;"><a class="anton_mouseover_class" title="Magic Stones" onclick="alert('Magic Stones'); return false;">Magic</a>: <input type="text" id="mstone_ar85_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="mstone_ar85_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" valign="top" nowrap="nowrap" style="padding-right: 91px; padding-bottom: 40px;">
+					<div style="margin-bottom: 10px;"><b>Accessories</b></div>
+					<span id="accessory_lv60_input_span_id" style="display: none;">Lv60: <input type="text" id="accessory_lv60_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="accessory_lv60_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="accessory_lv70_input_span_id" style="display: none;">Lv70: <input type="text" id="accessory_lv70_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="accessory_lv70_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="accessory_lv75_input_span_id" style="display: none;">Lv75: <input type="text" id="accessory_lv75_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="accessory_lv75_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="accessory_lv80_input_span_id">Lv80: <input type="text" id="accessory_lv80_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="accessory_lv80_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="accessory_lv85_input_span_id">Lv85: <input type="text" id="accessory_lv85_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="accessory_lv85_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="accessory_lv90_input_span_id" style="display: none;">Lv90: <input type="text" id="accessory_lv90_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="accessory_lv90_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+				</td>
+				<td align="left" valign="top" nowrap="nowrap" style="padding-bottom: 40px;">
+					<div style="margin-bottom: 10px;"><b>Special Equips</b><!-- <b>Sub Equips / Magic Stones</b><span id="other_lv85-90_note_id"> (<a href="#" class="mouseover_class" title="Accurate?" onclick="alert('Accurate?'); return false;">?</a>)</span> --></div>
+					<span id="other_lv60_input_span_id" style="display: none;">Lv60: <input type="text" id="other_lv60_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="other_lv60_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="other_lv65_input_span_id" style="display: none;">Lv65: <input type="text" id="other_lv65_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="other_lv65_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="other_lv70_input_span_id" style="display: none;">Lv70: <input type="text" id="other_lv70_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="other_lv70_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="other_lv75_input_span_id" style="display: none;">Lv75: <input type="text" id="other_lv75_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="other_lv75_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="other_lv80_input_span_id">Lv80: <input type="text" id="other_lv80_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="other_lv80_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="other_lv85_input_span_id">Lv85: <input type="text" id="other_lv85_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="other_lv85_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+					<span id="other_lv90_input_span_id" style="display: none;">Lv90: <input type="text" id="other_lv90_id" maxlength="4" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" style="width: 50; height: 28; padding: 5px; margin: 0px; margin-bottom: 8px; resize: none;" /> &nbsp; [<span id="other_lv90_result_id">&nbsp; &nbsp; &nbsp;</span>]<br /></span>
+				</td>
+			</tr>
+		</table>
+
+		<div style="padding-bottom: 4px;">
+		<b>Total:</b> <span id="odds_total_id"></span>
+		<span style="float: right;">
+			<b>Stage</b>: 
+			<select id="stage_select_id" onchange="calculate_odds();" onkeydown="calculate_odds();" onkeypress="calculate_odds();" onkeyup="calculate_odds();" onpaste="calculate_odds();" oncut="calculate_odds();" />
+				<option value="11">Time Gate (Lv70-75) (1-3)</option>
+				<option value="12">Time Gate (Lv70-75) (4-5)</option>
+				<option value="13">Time Gate (Lv75-80) (6-8)</option>
+				<option value="21">Power Station (Lv75-85) (Kore Power Plant)</option>
+				<option value="22">Power Station (Lv80-85) (2-4)</option>
+				<option value="31">Castle of the Dead (Lv80-85) (All)</option>
+				<option value="51" selected="selected">Metro Center (Lv85-90) (All)</option>
+				<!-- <option value="41">Anton Raid (Lv60-80) (Phase 1 Card)</option> -->
+				<option value="42">Anton Raid (Lv60-85) (Phase 2 Card)</option>
+			</select>
+		</span>
+		</div>
+		<hr style="height: 0px; border: 1px solid #000000; border-bottom: 0px;" />
+		<div align="center" style="margin-top: 15px;">
+			<noscript><span style="color: darkred;">You must have Javascript enabled to use this tool.</span></noscript>
+			<script type="text/javascript"><!--
+			document.write('<font size="-1">Enter the amount of epics you need for each level range. (values <!-- are  -->based on the kdnf <a href="http://pastebin.com/691JWbe7'+/*http://pastebin.com/4wBUgqKZ*/'" target="_blank" class="link_class">hell</a> and <a href="http://pastebin.com/fugTgbCT" target="_blank" class="link_class">anton</a> simulator)</font>');
+			--></script>
+			<br /><br />
+		</div>
+	</div>
+</div>
+<br /><br />
+
+<script type="text/javascript"><!--
+
+calculate_odds();
+setTimeout('calculate_odds();',0);
+
+--></script>
+
+</body>
+</html>
